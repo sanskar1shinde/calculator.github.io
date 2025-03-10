@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+ <style> 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-image: url('image/calci.webp');
+  background-size: cover;
+  background-position: center;
+}
+
+input {
+  outline: none;
+  border: none;
+}
+
+.calculator,
+input {
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.15),
+    -1px -1px 10px rgba(0, 0, 0, 0.15);
+}
+
+.calculator {
+  width: 430px;
+  background-color: white;
+  padding: 25px;
+  border-radius: 10px;
+  margin-left: -20em;
+}
+
+input:not(.text) {
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  margin: 10px;
+  font-size: 24px;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+input:hover:not(.text, .op) {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.op {
+  color: blueviolet;
+}
+
+.op:hover {
+  background-color: black;
+  color: blueviolet;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.output .text {
+  width: 100%;
+  height: 70px;
+  padding: 0 20px 0 0;
+  margin-bottom: 15px;
+  text-align: right;
+  font-size: 30px;
+  border-radius: 50px;
+}
+.calculator .equal {
+  width: 155px;
+  border-radius: 20%;
+}
+
+ </style>
+
+ </head>
+
+<body>
+    <div class="calculator">
+        <div class="output">
+            <input type="text" class="text" value="" placeholder="0">
+        </div>
+        <div>
+            <input type="button" value="AC" class="op AC">
+            <input type="button" value="DEL" class="op DEL">
+            <input type="button" value="%" class="op val">
+            <input type="button" value="/" class="op val">
+        </div>
+        <div>
+            <input type="button" value="7" class="val">
+            <input type="button" value="8" class="val">
+            <input type="button" value="9" class="val">
+            <input type="button" value="*" class="op val">
+        </div>
+        <div>
+            <input type="button" value="4" class="val">
+            <input type="button" value="5" class="val">
+            <input type="button" value="6" class="val">
+            <input type="button" value="-" class="op val">
+        </div>
+        <div>
+            <input type="button" value="1" class="val">
+            <input type="button" value="2" class="val">
+            <input type="button" value="3" class="val">
+            <input type="button" value="+" class="op val">
+        </div>
+        <div>
+            <input type="button" value="." class="op val">
+            <input type="button" value="0" class="val">
+            <input type="button" value="=" class="equal op">
+        </div>
+    </div>
+    <script>
+const output = document.querySelector(".text");
+const val = document.querySelectorAll(".val");
+const Clear = document.querySelector(".AC");
+const delete1 = document.querySelector(".DEL");
+const equal = document.querySelector(".equal");
+
+ val.forEach((val)=>{
+    val.addEventListener("click",()=>{
+        output.value += val.value ;
+    })
+})
+
+ Clear.addEventListener("click",()=>{
+    output.value = "";
+})
+
+ delete1.addEventListener("click",()=>{
+    output.value = output.value.slice(0,-1);
+})
+
+ equal.addEventListener("click",()=>{
+    try{
+        output.value = eval(output.value);
+    }catch(e){
+        alert(e);
+    }
+})
+    </script>
+</body>
+
+</html>
